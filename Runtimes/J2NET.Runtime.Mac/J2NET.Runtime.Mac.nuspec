@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>J2NET.Runtime.Mac</id>
+    <version>1.0.0</version>
+    <title>J2NET.Runtime.Mac</title>
+    <authors>CHEQUER</authors>
+    <owners>CHEQUER</owners>
+    <icon>Logo.jpg</icon>
+    <license type="file">openjre/mac/LICENSE</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>J2NET runtime via OpenJRE (macOS x64)</description>
+    <projectUrl>https://github.com/chequer-io/J2NET</projectUrl>
+    <repository url="https://github.com/chequer-io/J2NET" />
+  </metadata>
+</package>
