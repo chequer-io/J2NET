@@ -5,6 +5,6 @@
   </ItemGroup>
 
   <Target Name="CopyRuntime" BeforeTargets="PreBuildEvent">
-    <Copy SourceFiles="@(OpenJRE)" DestinationFolder="$(OutputPath)\runtime\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(OpenJRE)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
 </Project>
