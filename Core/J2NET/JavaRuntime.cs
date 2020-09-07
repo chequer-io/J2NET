@@ -6,6 +6,16 @@ namespace J2NET
 {
     public static class JavaRuntime
     {
+        public static Process ExecuteJar(string value, string arguments = null)
+        {
+            return Execute($"-jar {value}", arguments);
+        }
+
+        public static Process ExecuteClass(string value, string arguments = null)
+        {
+            return Execute($"-cp {value}", arguments);
+        }
+
         public static Process Execute(string value, string arguments = null)
         {
             var runtimePath = PathUtility.GetRuntimePath();
@@ -14,8 +24,8 @@ namespace J2NET
                 throw new DirectoryNotFoundException();
 
             return !string.IsNullOrEmpty(arguments)
-                ? Process.Start(runtimePath, $"-jar {value} {arguments}")
-                : Process.Start(runtimePath, $"-jar {value}");
+                ? Process.Start(runtimePath, $"{value} {arguments}")
+                : Process.Start(runtimePath, $"{value}");
         }
     }
 }

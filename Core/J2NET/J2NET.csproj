@@ -8,6 +8,8 @@
     <PackageProjectUrl>https://github.com/chequer-io/J2NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/chequer-io/J2NET</RepositoryUrl>
     <PackageIcon>Logo.jpg</PackageIcon>
+    <Version>1.0.1</Version>
+    <Description>Provides an environment for running Java in .NET</Description>
   </PropertyGroup>
 
   <ItemGroup>

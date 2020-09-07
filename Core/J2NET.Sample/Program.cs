@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var process = JavaRuntime.Execute("../../../Sample/Sample.jar");
+            var process = JavaRuntime.ExecuteJar("../../../Sample/Sample.jar");
             process.WaitForExit();
         }
     }
