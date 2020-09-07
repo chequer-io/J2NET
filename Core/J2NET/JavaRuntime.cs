@@ -1,38 +1,21 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
+using J2NET.Utilities;
 
 namespace J2NET
 {
     public static class JavaRuntime
     {
-        public static Process Execute(string value)
+        public static Process Execute(string value, string arguments = null)
         {
-            string java = null;
+            var runtimePath = PathUtility.GetRuntimePath();
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                switch (RuntimeInformation.OSArchitecture)
-                {
-                    case Architecture.X64:
-                        java = "win-64";
-                        break;
+            if (!Directory.Exists(Path.GetDirectoryName(runtimePath)))
+                throw new DirectoryNotFoundException();
 
-                    case Architecture.X86:
-                        java = "win-32";
-                        break;
-                }
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                java = "linux";
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                java = "mac";
-            }
-
-            return Process.Start(Path.Combine("runtime", java, "bin", "java"), $"-jar {value}");
+            return !string.IsNullOrEmpty(arguments)
+                ? Process.Start(runtimePath, $"-jar {value} {arguments}")
+                : Process.Start(runtimePath, $"-jar {value}");
         }
     }
 }
