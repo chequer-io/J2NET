@@ -1,5 +1,5 @@
 # J2NET
-![Nuget](https://img.shields.io/nuget/v/J2NET)  
+[![Nuget](https://img.shields.io/nuget/v/J2NET)](https://www.nuget.org/packages/J2NET/) 
 Provides an environment for running Java in .NET
 
 ## Getting Started
