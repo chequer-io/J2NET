@@ -1,10 +1,10 @@
 # J2NET
-[![Nuget](https://img.shields.io/nuget/v/J2NET)](https://www.nuget.org/packages/J2NET/) 
+[![Nuget](https://img.shields.io/nuget/v/J2NET)](https://www.nuget.org/packages/J2NET/)  
 Provides an environment for running Java in .NET
 
 ## Getting Started
 ### 1. Install NuGet package
-Install the latest version of the J2NET package from NuGet.
+Install the latest version of the **J2NET** package from NuGet.
 
 ### 2. Add Runtime package reference
 Paste the following XML into your Project(*.csproj / .vbproj / .fsproj*) file.
