@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.IO;
+using J2NET.Exceptions;
 using J2NET.Utilities;
 
 namespace J2NET
@@ -21,7 +22,7 @@ namespace J2NET
             var runtimePath = PathUtility.GetRuntimePath();
 
             if (!Directory.Exists(Path.GetDirectoryName(runtimePath)))
-                throw new DirectoryNotFoundException();
+                throw new RuntimeNotFoundException();
 
             return !string.IsNullOrEmpty(arguments)
                 ? Process.Start(runtimePath, $"{value} {arguments}")
