@@ -9,7 +9,7 @@ Install the latest version of the J2NET package from NuGet.
 ### 2. Add Runtime package reference
 ```xml
 <PropertyGroup>
-    <RuntimeVersion>1.0.1</RuntimeVersion>
+    <RuntimeVersion>1.1.0</RuntimeVersion>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">OSX</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">Linux</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">Windows</OSPlatform>
