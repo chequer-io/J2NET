@@ -7,7 +7,7 @@
     <authors>CHEQUER</authors>
     <owners>CHEQUER</owners>
     <icon>Logo.jpg</icon>
-    <license type="file">openjre/win-x86/LICENSE</license>
+    <license type="file">openjre/win-x86/legal/java.base/LICENSE</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>J2NET runtime via OpenJRE (Windows x86)</description>
     <projectUrl>https://github.com/chequer-io/J2NET</projectUrl>
