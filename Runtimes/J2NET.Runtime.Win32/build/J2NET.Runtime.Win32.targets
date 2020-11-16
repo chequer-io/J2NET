@@ -7,4 +7,13 @@
   <Target Name="CopyRuntime" BeforeTargets="PreBuildEvent">
     <Copy SourceFiles="@(OpenJRE)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
+
+  <Target Name="PublishRuntime" AfterTargets="ComputeFilesToPublish">
+    <ItemGroup>
+      <ResolvedFileToPublish Include="@(OpenJRE->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>runtimes\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>
