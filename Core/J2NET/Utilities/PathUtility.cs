@@ -12,20 +12,21 @@ namespace J2NET.Utilities
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                switch (RuntimeInformation.OSArchitecture)
+                platform = RuntimeInformation.OSArchitecture switch
                 {
-                    case Architecture.X64:
-                        platform = "win-x64";
-                        break;
-
-                    case Architecture.X86:
-                        platform = "win-x86";
-                        break;
-                }
+                    Architecture.X64 => "win-x64",
+                    Architecture.X86 => "win-x86",
+                    _ => null
+                };
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                platform = "linux";
+                platform = RuntimeInformation.OSArchitecture switch
+                {
+                    Architecture.X64 => "linux-x64",
+                    Architecture.Arm64 => "linux-arm64",
+                    _ => null
+                };
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
