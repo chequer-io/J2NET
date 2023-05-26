@@ -1,11 +1,10 @@
-﻿namespace J2NET.Sample
+﻿namespace J2NET.Sample;
+
+internal static class Program
 {
-    class Program
+    public static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var process = JavaRuntime.ExecuteJar("../../../Sample/Sample.jar");
-            process.WaitForExit();
-        }
+        var process = JavaRuntime.ExecuteJar("../../../Sample/Sample.jar");
+        process.WaitForExit();
     }
 }

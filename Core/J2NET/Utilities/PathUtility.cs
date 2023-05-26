@@ -8,35 +8,74 @@ namespace J2NET.Utilities
     {
         public static string GetRuntimePath()
         {
-            string platform = null;
+            var platformAndArchitecture = GetPlatformAndArchitecture();
+            return Path.Combine("runtimes", platformAndArchitecture, "bin", "java");
+        }
+
+        public static string GetPlatformAndArchitecture()
+        {
+            var arch = RuntimeInformation.OSArchitecture;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                platform = RuntimeInformation.OSArchitecture switch
+                return arch switch
                 {
                     Architecture.X64 => "win-x64",
                     Architecture.X86 => "win-x86",
-                    _ => null
+                    _ => throw new PlatformNotSupportedException($"Windows {arch}")
                 };
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                platform = RuntimeInformation.OSArchitecture switch
+                return arch switch
+                {
+                    Architecture.X64 => "osx-x64",
+                    Architecture.Arm64 => "osx-arm64",
+                    _ => throw new PlatformNotSupportedException($"macOS {arch}")
+                };
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                if (IsAlpineLinux())
+                {
+                    return arch switch
+                    {
+                        Architecture.X64 => "linux-musl-x64",
+                        _ => throw new PlatformNotSupportedException($"Alpine Linux {arch}")
+                    };
+                }
+
+                return arch switch
                 {
                     Architecture.X64 => "linux-x64",
                     Architecture.Arm64 => "linux-arm64",
-                    _ => null
+                    _ => throw new PlatformNotSupportedException($"Linux {arch}")
                 };
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+
+            throw new PlatformNotSupportedException(RuntimeInformation.OSDescription);
+        }
+
+        // FIY: https://github.com/dotnet/runtime/blob/5aa9035fc8d45c2a5a51f62e01aff14ad2600c5a/src/libraries/Common/tests/TestUtilities/System/PlatformDetection.Unix.cs#LL232C35-L232C39
+        private static bool IsAlpineLinux()
+        {
+            if (!File.Exists("/etc/os-release"))
+                return false;
+
+            foreach (ReadOnlySpan<char> line in File.ReadLines("/etc/os-release"))
             {
-                platform = "mac";
+                if (!line.StartsWith("ID=", StringComparison.Ordinal))
+                    continue;
+
+                ReadOnlySpan<char> id = line[3..].Trim('"').Trim('\'');
+
+                if (id.Equals("alpine", StringComparison.OrdinalIgnoreCase))
+                    return true;
             }
 
-            if (string.IsNullOrEmpty(platform))
-                throw new PlatformNotSupportedException();
-
-            return Path.Combine("runtimes", platform, "bin", "java");
+            return false;
         }
     }
 }

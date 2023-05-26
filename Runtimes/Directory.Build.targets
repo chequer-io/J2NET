@@ -1,0 +1,16 @@
+<Project>
+
+    <Target Name="CleanJRE" BeforeTargets="Clean">
+        <RemoveDir Directories="obj/openjre" />
+    </Target>
+
+    <Target Name="UnzipJRE" BeforeTargets="Restore">
+        <Unzip Condition="!Exists('openjre')" SourceFiles="openjre.zip" DestinationFolder="obj" />
+    </Target>
+
+    <ItemGroup>
+        <Content Include="obj\openjre\**\*.*" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="runtimes/$(PlatformAndArchitecture)/openjre" />
+        <Content Remove="obj\openjre\**\.DS_Store" />
+    </ItemGroup>
+
+</Project>
