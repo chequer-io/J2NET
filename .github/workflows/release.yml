@@ -1,0 +1,22 @@
+name: Release J2NET
+run-name: Release J2NET ${{ inputs.VERSION }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: 배포 버전 (ex. 1.3.0)
+
+jobs:
+  release:
+    name: Release J2NET
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v2
+        with:
+            dotnet-version: '7.0.x'
+
+      - name: Build & Push
+        run: ./build.ps1 ${{ inputs.VERSION }} --push ${{ vars.J2NET_NUGET_SOURCE }} ${{ secrets.J2NET_NUGET_API_KEY }}
