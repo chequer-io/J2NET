@@ -10,7 +10,7 @@ if [[ "$2" == "--push" ]]; then
     apiKey=${4:?--push <source> <api key>}
 fi
 
-function normalize_os() {
+function normalize_os {
   case "$1" in
     "darwin")
       echo "osx"
@@ -28,7 +28,7 @@ function normalize_os() {
   esac
 }
 
-function normalize_architecture() {
+function normalize_architecture {
   case "$1" in
     "aarch64")
       echo "arm64"
@@ -46,13 +46,13 @@ function normalize_architecture() {
   esac
 }
 
-function openjre_get_release_value() {
+function openjre_get_release_value {
     local release="$1/release"
     local value=$(grep "$2=" $release | cut -d'=' -f2 | tr '[:upper:]' '[:lower:]')
     echo $value | perl -pe 's/["\r\n\t\f\v]//g'
 }
 
-function openjre_verify() {
+function openjre_verify {
     local path=$1
     local csproj="$path/$(basename $runtime).csproj"
     local openjre="$path/obj/openjre"
@@ -81,7 +81,7 @@ function openjre_verify() {
     fi
 }
 
-function dotnet_restore() {
+function dotnet_restore {
     local path=$1
 
     pushd $path > /dev/null
@@ -90,7 +90,7 @@ function dotnet_restore() {
     popd > /dev/null
 }
 
-function dotnet_pack() {
+function dotnet_pack {
     local path=$1
 
     pushd $path > /dev/null
@@ -99,7 +99,7 @@ function dotnet_pack() {
     popd > /dev/null
 }
 
-function dotnet_nuget_push() {
+function dotnet_nuget_push {
     local nupkg=$1
     local source=$2
     local apiKey=$3
@@ -108,7 +108,7 @@ function dotnet_nuget_push() {
     dotnet nuget push --source $source --api-key $apiKey
 }
 
-function nupkg_remove_lib() {
+function nupkg_remove_lib {
     local project="$(basename $1)"
     local nupkg="$project.$version.nupkg"
     local tmpDir="$nupkg.tmp"
