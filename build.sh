@@ -105,7 +105,7 @@ function dotnet_nuget_push {
     local apiKey=$3
 
     echo "[dotnet] $nupkg push to $source"
-    dotnet nuget push --source $source --api-key $apiKey
+    dotnet nuget push $nupkg --source $source --api-key $apiKey
 }
 
 function nupkg_remove_lib {
