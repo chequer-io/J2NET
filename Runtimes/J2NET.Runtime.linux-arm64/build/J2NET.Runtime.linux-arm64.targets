@@ -1,16 +1,20 @@
 <Project>
+    <PropertyGroup>
+        <_J2NET_Runtime_Path>runtimes\linux-arm64\openjre</_J2NET_Runtime_Path>
+    </PropertyGroup>
+
     <ItemGroup>
-        <OpenJRE Include="$(MSBuildThisFileDirectory)..\openjre\**\*.*" />
+        <_J2NET_Runtime_Files Include="$(MSBuildThisFileDirectory)..\openjre\**\*.*" />
     </ItemGroup>
 
-    <Target Name="CopyRuntime" BeforeTargets="PreBuildEvent">
-        <Copy SourceFiles="@(OpenJRE)" DestinationFolder="$(OutputPath)\runtimes\linux-arm64\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Target Name="_J2NET_Runtime_CopyOnBuild" BeforeTargets="PreBuildEvent">
+        <Copy SourceFiles="@(_J2NET_Runtime_Files)" DestinationFolder="$(OutputPath)\$(_J2NET_Runtime_Path)\%(RecursiveDir)" SkipUnchangedFiles="true" />
     </Target>
 
-    <Target Name="PublishRuntime" AfterTargets="ComputeFilesToPublish">
+    <Target Name="_J2NET_Runtime_CopyOnPublish" AfterTargets="ComputeFilesToPublish">
         <ItemGroup>
-            <ResolvedFileToPublish Include="@(OpenJRE->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-                <RelativePath>runtimes\linux-arm64\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+            <ResolvedFileToPublish Include="@(_J2NET_Runtime_Files->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>$(_J2NET_Runtime_Path)\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
                 <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
             </ResolvedFileToPublish>
         </ItemGroup>
