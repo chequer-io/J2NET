@@ -46,37 +46,43 @@ function normalize_architecture {
   esac
 }
 
+function to_lower {
+   echo $1 | tr '[:upper:]' '[:lower:]'
+}
+
 function openjre_get_release_value {
-    local release="$1/release"
-    local value=$(grep "$2=" $release | cut -d'=' -f2 | tr '[:upper:]' '[:lower:]')
+    local release="$1/obj/openjre/release"
+    local value=$(grep "$2=" $release | cut -d'=' -f2)
     echo $value | perl -pe 's/["\r\n\t\f\v]//g'
 }
 
 function openjre_verify {
     local path=$1
     local csproj="$path/$(basename $runtime).csproj"
-    local openjre="$path/obj/openjre"
 
-    echo "[openjre] verify platform and architecture"
+    echo "[openjre] verify runtime identifier"
 
-    local osName=$(openjre_get_release_value $openjre OS_NAME)
-    local osArch=$(openjre_get_release_value $openjre OS_ARCH)
+    local name=$(to_lower "$(openjre_get_release_value $path OS_NAME)")
+    local arch=$(to_lower "$(openjre_get_release_value $path OS_ARCH)")
 
-    osName=$(normalize_os $osName)
-    osArch=$(normalize_architecture $osArch)
+    local normalizedName=$(normalize_os $name)
+    local normalizedArch=$(normalize_architecture $arch)
 
-    if [[ "$osName" == "linux" ]]; then
-        local libc=$(openjre_get_release_value $openjre LIBC)
+    if [[ "$normalizedName" == "linux" ]]; then
+        local libc=$(to_lower "$(openjre_get_release_value $path LIBC)")
         if [[ "$libc" == "musl" ]]; then
-            osName="linux-musl"
+            normalizedName="linux-musl"
         fi
     fi
 
-    local actualPAC="$osName-$osArch"
-    local expectedPAC=$(awk -v FS="(>|<)" '/<PlatformAndArchitecture>/ {print $3}' $csproj)
+    echo "[openjre] platform: $normalizedName ($name)"
+    echo "[openjre] architecture: $normalizedArch ($arch)"
 
-    if [[ "$expectedPAC" != "$actualPAC" ]]; then
-        echo "Expected platform and architecture is '$expectedPAC' but was '$actualPAC'" >&2
+    local actualRID="$normalizedName-$normalizedArch"
+    local expectedRID=$(awk -v FS="(>|<)" '/<RuntimeIdentifier>/ {print $3}' $csproj)
+
+    if [[ "$expectedRID" != "$actualRID" ]]; then
+        echo "Expected runtime identifier is '$expectedRID' but was '$actualRID'" >&2
         exit 1
     fi
 }
@@ -95,7 +101,7 @@ function dotnet_pack {
 
     pushd $path > /dev/null
     echo "[dotnet] pack"
-    dotnet pack -c Release -o $outDir -p:Version=$version --nologo --no-restore
+    dotnet pack -c Release -o $outDir -p:Version=$version --nologo --no-restore ${@:2}
     popd > /dev/null
 }
 
@@ -152,7 +158,7 @@ for runtime in Runtimes/J2NET.Runtime.* ; do
     echo " ** $runtime ** "
     dotnet_restore $runtime
     openjre_verify $runtime
-    dotnet_pack $runtime
+    dotnet_pack $runtime -p:JREVersion="$(openjre_get_release_value $runtime IMPLEMENTOR_VERSION)"
     nupkg_remove_lib $runtime
     
     echo

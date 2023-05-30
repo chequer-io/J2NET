@@ -1,5 +1,10 @@
 <Project>
 
+    <Target Name="Pack Validation" BeforeTargets="Build">
+        <Error Text="'JREVersion' property was not configured" Condition=" $(JREVersion) == '' " />
+        <Message Text="JREVersion: $(JREVersion)" Importance="normal" />
+    </Target>
+
     <Target Name="CleanJRE" BeforeTargets="Clean">
         <RemoveDir Directories="obj/openjre" />
     </Target>
@@ -9,8 +14,24 @@
     </Target>
 
     <ItemGroup>
-        <Content Include="obj\openjre\**\*.*" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="runtimes/$(PlatformAndArchitecture)/native/openjre" />
+        <Content Include="build\J2NET.Runtime.*.targets" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="build" />
+        <Content Include="obj\openjre\**\*.*" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="openjre" />
         <Content Remove="obj\openjre\**\.DS_Store" />
+    </ItemGroup>
+
+    <PropertyGroup Label="NuGet">
+        <Title>J2NET.Runtime.$(RuntimeIdentifier)</Title>
+        <Authors>CHEQUER</Authors>
+        <Company>CHEQUER</Company>
+        <Description>J2NET runtime via OpenJRE $(JREVersion)</Description>
+        <PackageProjectUrl>https://github.com/chequer-io/J2NET</PackageProjectUrl>
+        <PackageLicenseFile>openjre/legal/java.base/LICENSE</PackageLicenseFile>
+        <PackageIcon>Logo.jpg</PackageIcon>
+        <RepositoryUrl>https://github.com/chequer-io/J2NET</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="Logo.jpg" Pack="True" PackagePath="" />
     </ItemGroup>
 
 </Project>

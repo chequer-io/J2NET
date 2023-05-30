@@ -1,0 +1,18 @@
+<Project>
+    <ItemGroup>
+        <OpenJRE Include="$(MSBuildThisFileDirectory)..\openjre\**\*.*" />
+    </ItemGroup>
+
+    <Target Name="CopyRuntime" BeforeTargets="PreBuildEvent">
+        <Copy SourceFiles="@(OpenJRE)" DestinationFolder="$(OutputPath)\runtimes\linux-x64\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="PublishRuntime" AfterTargets="ComputeFilesToPublish">
+        <ItemGroup>
+            <ResolvedFileToPublish Include="@(OpenJRE->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>runtimes\linux-x64\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+</Project>

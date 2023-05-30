@@ -9,11 +9,11 @@ namespace J2NET.Utilities
         public static string GetRuntimePath()
         {
             var directory = Path.GetDirectoryName(typeof(PathUtility).Assembly.Location) ?? throw new DirectoryNotFoundException();
-            var platformAndArchitecture = GetPlatformAndArchitecture();
-            return Path.Combine(directory, "runtimes", platformAndArchitecture, "native", "openjre", "bin", "java");
+            var runtimeIdentifier = GetRuntimeIdentifier();
+            return Path.Combine(directory, "runtimes", runtimeIdentifier, "openjre", "bin", "java");
         }
 
-        public static string GetPlatformAndArchitecture()
+        public static string GetRuntimeIdentifier()
         {
             var arch = RuntimeInformation.OSArchitecture;
 

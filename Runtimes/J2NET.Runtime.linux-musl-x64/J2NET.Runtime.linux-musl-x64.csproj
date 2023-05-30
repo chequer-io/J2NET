@@ -3,22 +3,7 @@
     <PropertyGroup>
         <OutputType>Module</OutputType>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <PlatformAndArchitecture>linux-musl-x64</PlatformAndArchitecture>
+        <RuntimeIdentifier>linux-musl-x64</RuntimeIdentifier>
     </PropertyGroup>
-
-    <PropertyGroup Label="NuGet">
-        <Title>J2NET.Runtime.linux-musl-x64</Title>
-        <Authors>CHEQUER</Authors>
-        <Company>CHEQUER</Company>
-        <Description>J2NET runtime via OpenJRE (Alpine Linux x64)</Description>
-        <PackageProjectUrl>https://github.com/chequer-io/J2NET</PackageProjectUrl>
-        <PackageLicenseFile>runtimes/linux-musl-x64/native/openjre/legal/java.base/LICENSE</PackageLicenseFile>
-        <PackageIcon>Logo.jpg</PackageIcon>
-        <RepositoryUrl>https://github.com/chequer-io/J2NET</RepositoryUrl>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <None Update="Logo.jpg" Pack="True" PackagePath="" />
-    </ItemGroup>
 
 </Project>
