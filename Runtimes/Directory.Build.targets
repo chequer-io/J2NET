@@ -9,7 +9,7 @@
     </Target>
 
     <ItemGroup>
-        <Content Include="obj\openjre\**\*.*" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="runtimes/$(PlatformAndArchitecture)/openjre" />
+        <Content Include="obj\openjre\**\*.*" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="runtimes/$(PlatformAndArchitecture)/native/openjre" />
         <Content Remove="obj\openjre\**\.DS_Store" />
     </ItemGroup>
 

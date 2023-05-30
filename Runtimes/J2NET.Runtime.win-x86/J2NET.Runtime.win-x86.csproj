@@ -12,7 +12,7 @@
         <Company>CHEQUER</Company>
         <Description>J2NET runtime via OpenJRE (Windows x86)</Description>
         <PackageProjectUrl>https://github.com/chequer-io/J2NET</PackageProjectUrl>
-        <PackageLicenseFile>runtimes/win-x86/openjre/legal/java.base/LICENSE</PackageLicenseFile>
+        <PackageLicenseFile>runtimes/win-x86/native/openjre/legal/java.base/LICENSE</PackageLicenseFile>
         <PackageIcon>Logo.jpg</PackageIcon>
         <RepositoryUrl>https://github.com/chequer-io/J2NET</RepositoryUrl>
     </PropertyGroup>
