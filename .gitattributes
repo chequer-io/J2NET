@@ -1,1 +1,1 @@
-Runtimes/J2NET.Runtime.*/openjre.zip filter=lfs diff=lfs merge=lfs -text
+src/runtimes/J2NET.Runtime.*/openjre.zip filter=lfs diff=lfs merge=lfs -text

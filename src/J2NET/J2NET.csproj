@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>CHEQUER</Authors>
+    <Company>CHEQUER</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/chequer-io/J2NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/chequer-io/J2NET</RepositoryUrl>
+    <PackageIcon>Logo.jpg</PackageIcon>
+    <Description>Provides an environment for running Java in .NET</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="True" PackagePath="" />
+    <None Include="..\..\Logo.jpg" Pack="True" PackagePath="" />
+  </ItemGroup>
+
+</Project>

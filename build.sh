@@ -154,7 +154,7 @@ function nupkg_remove_lib {
 
 rm -rf $outDir
 
-for runtime in Runtimes/J2NET.Runtime.* ; do
+for runtime in src/runtimes/J2NET.Runtime.* ; do
     echo " ** $runtime ** "
     dotnet_restore $runtime
     openjre_verify $runtime
@@ -164,9 +164,9 @@ for runtime in Runtimes/J2NET.Runtime.* ; do
     echo
 done
 
-echo " ** Core/J2NET ** "
-dotnet_restore Core/J2NET
-dotnet_pack Core/J2NET
+echo " ** J2NET ** "
+dotnet_restore src/J2NET
+dotnet_pack src/J2NET
 
 if [[ "$2" == "--push" ]]; then
     for nupkg in $outDir/*.nupkg ; do
