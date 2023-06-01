@@ -9,7 +9,7 @@ Provides an environment for running Java in .NET
 | macOS    | Apple Silicon (ARM64)  | [![J2NET.Runtime.macOS-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.macOS-arm64)](https://www.nuget.org/packages/J2NET.Runtime.macOS-arm64/) |
 | Linux    | X64                    | [![J2NET.Runtime.linux-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-x64/) |
 | Linux    | ARM64                  | [![J2NET.Runtime.linux-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-arm64)](https://www.nuget.org/packages/J2NET.Runtime.linux-arm64/) |
-| Alpine   | X64.                   | [![J2NET.Runtime.linux-musl-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-musl-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-musl-x64/) |
+| Alpine   | X64                    | [![J2NET.Runtime.linux-musl-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-musl-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-musl-x64/) |
 | Windows  | X64                    | [![J2NET.Runtime.win-x64](https://img.shields.io/nuget/v/J2NET.Runtime.win-x64)](https://www.nuget.org/packages/J2NET.Runtime.win-x64/) |
 | Windows  | X86                    | [![J2NET.Runtime.win-x86](https://img.shields.io/nuget/v/J2NET.Runtime.win-x86)](https://www.nuget.org/packages/J2NET.Runtime.win-x86/) |
 
