@@ -2,6 +2,16 @@
 [![Nuget](https://img.shields.io/nuget/v/J2NET)](https://www.nuget.org/packages/J2NET/)  
 Provides an environment for running Java in .NET
 
+## Support
+| Platform | Architecture           | Package |
+| -------- | ---------------------- | ------- |
+| macOS    | Intel (X64)            | [![J2NET.Runtime.macOS-x64](https://img.shields.io/nuget/v/J2NET.Runtime.macOS-x64)](https://www.nuget.org/packages/J2NET.Runtime.macOS-x64/) |
+| macOS    | Apple Silicon (ARM64)  | [![J2NET.Runtime.macOS-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.macOS-arm64)](https://www.nuget.org/packages/J2NET.Runtime.macOS-arm64/) |
+| Linux    | X64                    | [![J2NET.Runtime.linux-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-x64/) |
+| Linux    | ARM64                  | [![J2NET.Runtime.linux-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-arm64)](https://www.nuget.org/packages/J2NET.Runtime.linux-arm64/) |
+| Windows  | X64                    | [![J2NET.Runtime.win-x64](https://img.shields.io/nuget/v/J2NET.Runtime.win-x64)](https://www.nuget.org/packages/J2NET.Runtime.win-x64/) |
+| Windows  | X86                    | [![J2NET.Runtime.win-x86](https://img.shields.io/nuget/v/J2NET.Runtime.win-x86)](https://www.nuget.org/packages/J2NET.Runtime.win-x86/) |
+
 ## Getting Started
 ### 1. Install NuGet package
 Install the latest version of the **J2NET** package from NuGet.
@@ -11,7 +21,7 @@ Paste the following XML into your Project(*.csproj / .vbproj / .fsproj*) file.
 
 ```xml
 <PropertyGroup>
-    <RuntimeVersion>1.2.1</RuntimeVersion>
+    <RuntimeVersion>1.3.0</RuntimeVersion>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">OSX</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">Linux</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">Windows</OSPlatform>
@@ -19,11 +29,12 @@ Paste the following XML into your Project(*.csproj / .vbproj / .fsproj*) file.
 </PropertyGroup>
 
 <ItemGroup>
-    <PackageReference Condition=" '$(OSPlatform)' == 'OSX' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.Mac" Version="$(RuntimeVersion)" />
-    <PackageReference Condition=" '$(OSPlatform)' == 'Linux' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.Linux-x64" Version="$(RuntimeVersion)" />
-    <PackageReference Condition=" '$(OSPlatform)' == 'Linux' And '$(OSArchitecture)' == 'ARM64' " Include="J2NET.Runtime.Linux-arm64" Version="$(RuntimeVersion)" />
-    <PackageReference Condition=" '$(OSPlatform)' == 'Windows' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.Win64" Version="$(RuntimeVersion)" />
-    <PackageReference Condition=" '$(OSPlatform)' == 'Windows' And '$(OSArchitecture)' == 'X86' " Include="J2NET.Runtime.Win32" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'OSX' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.macOS-x64" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'OSX' And '$(OSArchitecture)' == 'ARM64' " Include="J2NET.Runtime.macOS-arm64" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'Linux' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.linux-x64" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'Linux' And '$(OSArchitecture)' == 'ARM64' " Include="J2NET.Runtime.linux-arm64" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'Windows' And '$(OSArchitecture)' == 'X64' " Include="J2NET.Runtime.win-x64" Version="$(RuntimeVersion)" />
+    <PackageReference Condition=" '$(OSPlatform)' == 'Windows' And '$(OSArchitecture)' == 'X86' " Include="J2NET.Runtime.win-x86" Version="$(RuntimeVersion)" />
 </ItemGroup>
 ```
 
