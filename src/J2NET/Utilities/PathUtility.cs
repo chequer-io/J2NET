@@ -8,6 +8,13 @@ namespace J2NET.Utilities
     {
         public static string GetRuntimePath()
         {
+            string javaHome = Environment.GetEnvironmentVariable("java_home");
+
+            if (javaHome != null)
+            {
+                return Path.Combine(javaHome, "bin", "java");
+            }
+
             var directory = Path.GetDirectoryName(typeof(PathUtility).Assembly.Location) ?? throw new DirectoryNotFoundException();
             var runtimeIdentifier = GetRuntimeIdentifier();
             return Path.Combine(directory, "runtimes", runtimeIdentifier, "openjre", "bin", "java");
