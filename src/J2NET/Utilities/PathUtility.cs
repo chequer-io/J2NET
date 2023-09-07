@@ -8,7 +8,7 @@ namespace J2NET.Utilities
     {
         public static string GetRuntimePath()
         {
-            string javaHome = Environment.GetEnvironmentVariable("java_home");
+            string javaHome = Environment.GetEnvironmentVariable("JAVA_HOME");
 
             if (javaHome != null)
             {
