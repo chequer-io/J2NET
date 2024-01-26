@@ -15,7 +15,7 @@ namespace J2NET.Utilities
 
         public static string GetRuntimeIdentifier()
         {
-            var arch = RuntimeInformation.OSArchitecture;
+            var arch = RuntimeInformation.ProcessArchitecture;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
