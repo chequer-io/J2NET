@@ -17,16 +17,25 @@ namespace J2NET
             return Execute($"-cp {value}", arguments);
         }
 
-        public static Process Execute(string value, string arguments = null)
+        public static ProcessStartInfo Create(string value, string arguments = null)
         {
             var runtimePath = PathUtility.GetRuntimePath();
 
             if (!Directory.Exists(Path.GetDirectoryName(runtimePath)))
                 throw new RuntimeNotFoundException();
 
-            return !string.IsNullOrEmpty(arguments)
-                ? Process.Start(runtimePath, $"{value} {arguments}")
-                : Process.Start(runtimePath, $"{value}");
+            var processArguments = value;
+
+            if (!string.IsNullOrEmpty(arguments))
+                processArguments += $" {arguments}";
+
+            return new ProcessStartInfo(runtimePath, processArguments);
+        }
+
+        public static Process Execute(string value, string arguments = null)
+        {
+            var info = Create(value, arguments);
+            return Process.Start(info);
         }
     }
 }
