@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <_J2NET_Runtime_Path>runtimes\win-x86\openjre</_J2NET_Runtime_Path>
+        <_J2NET_Runtime_Path>runtimes\linux-musl-arm64\openjre</_J2NET_Runtime_Path>
     </PropertyGroup>
 
     <ItemGroup>

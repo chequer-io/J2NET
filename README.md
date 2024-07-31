@@ -10,8 +10,8 @@ Provides an environment for running Java in .NET
 | Linux    | X64                    | [![J2NET.Runtime.linux-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-x64/) |
 | Linux    | ARM64                  | [![J2NET.Runtime.linux-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-arm64)](https://www.nuget.org/packages/J2NET.Runtime.linux-arm64/) |
 | Alpine   | X64                    | [![J2NET.Runtime.linux-musl-x64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-musl-x64)](https://www.nuget.org/packages/J2NET.Runtime.linux-musl-x64/) |
+| Alpine   | ARM64                  | [![J2NET.Runtime.linux-musl-arm64](https://img.shields.io/nuget/v/J2NET.Runtime.linux-musl-arm64)](https://www.nuget.org/packages/J2NET.Runtime.linux-musl-arm64/) |
 | Windows  | X64                    | [![J2NET.Runtime.win-x64](https://img.shields.io/nuget/v/J2NET.Runtime.win-x64)](https://www.nuget.org/packages/J2NET.Runtime.win-x64/) |
-| Windows  | X86                    | [![J2NET.Runtime.win-x86](https://img.shields.io/nuget/v/J2NET.Runtime.win-x86)](https://www.nuget.org/packages/J2NET.Runtime.win-x86/) |
 
 ## Getting Started
 ### 1. Install NuGet package
@@ -22,7 +22,7 @@ Paste the following XML into your Project(*.csproj / .vbproj / .fsproj*) file.
 
 ```xml
 <PropertyGroup>
-    <RuntimeVersion>1.3.1</RuntimeVersion>
+    <RuntimeVersion>1.4.0</RuntimeVersion>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">OSX</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">Linux</OSPlatform>
     <OSPlatform Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))' == 'true'">Windows</OSPlatform>
