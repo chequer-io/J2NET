@@ -44,6 +44,7 @@ namespace J2NET.Utilities
                     return arch switch
                     {
                         Architecture.X64 => "linux-musl-x64",
+                        Architecture.Arm64 => "linux-musl-arm64",
                         _ => throw new PlatformNotSupportedException($"Alpine Linux {arch}")
                     };
                 }
